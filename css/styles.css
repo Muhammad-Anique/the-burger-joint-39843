@@ -1,0 +1,208 @@
+:root {
+    --primary: #ea580c; /* Tailwind orange-600 */
+    --primary-dark: #c2410c; /* Tailwind orange-700 */
+    --secondary: #1c1917; /* Tailwind stone-900 */
+    --accent: #fafaf9; /* Tailwind stone-50 */
+    --text-main: #292524; /* Tailwind stone-800 */
+    --text-muted: #78716c; /* Tailwind stone-500 */
+    --white: #ffffff;
+    --transition-fast: 0.2s ease;
+    --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base Body Styles */
+body {
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Selection Color */
+::selection {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--accent);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--text-muted);
+    border-radius: 5px;
+    border: 2px solid var(--accent);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+/* Navigation & Header */
+header {
+    transition: background var(--transition-fast), padding var(--transition-fast);
+}
+
+header.scrolled {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.nav-link {
+    position: relative;
+    padding-bottom: 2px;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary);
+    transition: width var(--transition-fast);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Hero Section Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#home h1 {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+#home p {
+    animation: fadeInUp 0.8s ease 0.2s forwards;
+    opacity: 0;
+}
+
+#home div {
+    animation: fadeInUp 0.8s ease 0.4s forwards;
+    opacity: 0;
+}
+
+/* Menu Section Styles */
+#menu .grid > div {
+    transition: transform var(--transition-smooth);
+    padding: 1rem;
+    border-radius: 0.75rem;
+}
+
+#menu .grid > div:hover {
+    background-color: var(--accent);
+    transform: translateY(-5px);
+}
+
+#menu h4 {
+    position: relative;
+    display: inline-block;
+}
+
+#menu h4::before {
+    content: '🍔';
+    margin-right: 8px;
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+#menu .flex:hover h4::before {
+    opacity: 1;
+}
+
+/* Gallery Hover Effects */
+#gallery img {
+    transition: transform 0.5s ease, filter 0.5s ease;
+    filter: grayscale(20%);
+}
+
+#gallery img:hover {
+    transform: scale(1.05);
+    filter: grayscale(0%);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.2);
+    z-index: 10;
+}
+
+/* Contact Section & Forms */
+input, textarea {
+    transition: all var(--transition-fast);
+}
+
+input:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.2);
+}
+
+/* Smooth Scrolling Offset */
+section {
+    scroll-margin-top: 80px; /* Adjust based on header height */
+}
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+    #home h1 {
+        font-size: 3rem;
+    }
+    
+    .nav-link {
+        font-size: 1.25rem;
+    }
+}
+
+/* Intersection Observer Classes */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Menu Item Price Badge */
+.price-tag {
+    background: var(--primary);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    box-shadow: 2px 2px 0px var(--secondary);
+}
+
+/* Footer Link Social Icons Placeholder Effect */
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--secondary);
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.social-link:hover {
+    background: var(--primary);
+    transform: rotate(15deg);
+}
